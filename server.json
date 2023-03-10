@@ -7,6 +7,14 @@
       "category": "venda",
       "price": 14000,
       "createdAt": "2022-07-29T19:36:44.505Z"
+    },
+    {
+      "description": "pato144",
+      "price": 2333,
+      "category": "animal",
+      "type": "outcome",
+      "createdAt": "2023-03-10T20:11:16.077Z",
+      "id": 2
     }
   ]
 }
