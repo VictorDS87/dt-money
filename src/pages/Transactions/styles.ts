@@ -17,6 +17,20 @@ export const TransactionsTable = styled.table`
         padding: 1.25rem 2rem;
         background: ${props => props.theme['gray-700']};
 
+        button {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+
+            cursor: pointer;
+
+            &:hover {
+                svg{
+                    background: ${props => props.theme['red-300']};
+                }
+            }
+        }
+
         &:first-child {
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px
