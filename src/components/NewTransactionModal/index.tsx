@@ -15,6 +15,8 @@ const newTransactionFormSchema = z.object({
     type: z.enum(['income', 'outcome']),
 })
 
+
+
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionModal() {
@@ -43,7 +45,6 @@ export function NewTransactionModal() {
         
       }
 
-      
     return (
 
         <Dialog.Portal>

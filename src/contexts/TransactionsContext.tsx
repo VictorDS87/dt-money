@@ -21,16 +21,26 @@ interface TransactionContextType {
     transactions: Transaction[];
     fetchTransactions: (query?: string) => Promise<void>;
     createTransaction: (data: CreateTransactionInput) => Promise<void>
+    deleteTransaction:(value: number) => void
 }
 
 interface TransactionsProviderProps {
     children: ReactNode
 }
 
+
 export const TransactionsContext = createContext({} as TransactionContextType);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const [ transactions, setTransactions] = useState<Transaction[]>([])
+
+    function deleteTransaction(value: number) {
+        api.delete('transactions/'+value)
+        console.log(value)
+        setTransactions(transactions.filter(item => item.id != value))   
+        console.log(transactions)
+
+    }
 
     async function fetchTransactions(query?: string) {
         const response = await api.get('transactions', {
@@ -58,12 +68,14 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         setTransactions(state => [response.data, ...state])
     }
 
+    
+
     useEffect(() => {
         fetchTransactions()
     }, [])
 
     return (
-        <TransactionsContext.Provider value={{ transactions, fetchTransactions, createTransaction }}>
+        <TransactionsContext.Provider value={{ transactions, fetchTransactions, createTransaction, deleteTransaction }}>
             {children}
         </TransactionsContext.Provider>
     )

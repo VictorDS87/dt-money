@@ -42,10 +42,24 @@ export const TransactionsTable = styled.table`
         }
     }
 `
+export const ButtonTrash = styled.button`
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+        color: ${props => props.theme['red-300']};
+
+        transition: 0.3s;
+    }
+    /* background: red !important;; */
+
+    
+`
 
 interface PriceHighLightProps {
     variant: "income" | "outcome";
 }
+
 
 export const PriceHighLight = styled.span<PriceHighLightProps>`
     color: ${props => props.variant === "income" ? props.theme["green-300"] : props.theme['red-300']};
