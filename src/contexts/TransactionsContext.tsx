@@ -34,14 +34,6 @@ export const TransactionsContext = createContext({} as TransactionContextType);
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
     const [ transactions, setTransactions] = useState<Transaction[]>([])
 
-    function deleteTransaction(value: number) {
-        api.delete('transactions/'+value)
-        console.log(value)
-        setTransactions(transactions.filter(item => item.id != value))   
-        console.log(transactions)
-
-    }
-
     async function fetchTransactions(query?: string) {
         const response = await api.get('transactions', {
             params: {
@@ -68,7 +60,11 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         setTransactions(state => [response.data, ...state])
     }
 
-    
+    function deleteTransaction(value: number) {
+        api.delete('transactions/'+value)
+        
+        setTransactions(transactions.filter(item => item.id != value))   
+    }
 
     useEffect(() => {
         fetchTransactions()
